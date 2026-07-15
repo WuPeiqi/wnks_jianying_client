@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>无念剪映小助手</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 标题栏 -->
+    <div class="titlebar">
+        <div class="titlebar-drag">
+            <span class="app-icon">📱</span>
+            <span class="app-title">无念剪映小助手</span>
+        </div>
+        <div class="titlebar-buttons">
+            <button class="titlebar-btn" id="homeBtn">前往官方首页</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 剪映草稿路径设置 -->
+        <div class="section">
+            <div class="section-header">
+                <h2>剪映草稿路径设置</h2>
+                <button class="link-btn" id="modifyPathBtn">设置修改</button>
+            </div>
+            <div class="path-display">
+                <label>当前路径:</label>
+                <div class="path-value" id="currentPath">未设置</div>
+            </div>
+        </div>
+
+        <!-- 输入草稿地址 -->
+        <div class="section">
+            <div class="section-header">
+                <h2>草稿地址</h2>
+                <button class="link-btn" id="historyBtn">历史记录</button>
+            </div>
+            <textarea 
+                id="draftInput" 
+                class="draft-input" 
+                placeholder="输入草稿地址，例如：https://www.wunian.chat/api/v1/jianying/draft?draft_id=123"
+                rows="1"
+            ></textarea>
+        </div>
+
+        <!-- 创建剪映草稿按钮 -->
+        <button class="create-btn" id="createBtn">创建剪映草稿</button>
+
+        <!-- 下载日志 -->
+        <div class="section log-section">
+            <div class="section-header">
+                <h2>操作日志</h2>
+                <button class="link-btn" id="clearLogBtn">清除日志</button>
+            </div>
+            <div class="log-container" id="logContainer">
+                <div class="empty-state">
+                    <div class="empty-icon">📦</div>
+                    <div class="empty-text">暂无日志</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 版本号 -->
+    <div class="version">版本 1.0.0</div>
+
+    <!-- 历史记录抽屉 -->
+    <div class="history-overlay" id="historyOverlay">
+        <div class="history-drawer">
+            <div class="history-drawer-header">
+                <h3>历史记录</h3>
+                <div class="history-drawer-actions">
+                    <button class="link-btn" id="clearHistoryBtn">清空全部</button>
+                    <button class="history-close-btn" id="closeHistoryBtn">✕</button>
+                </div>
+            </div>
+            <div class="history-list" id="historyList">
+                <!-- 历史记录项由 JS 动态渲染 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 自定义提示框 -->
+    <div class="custom-alert-overlay" id="customAlertOverlay">
+        <div class="custom-alert">
+            <div class="custom-alert-icon" id="customAlertIcon">ℹ️</div>
+            <div class="custom-alert-message" id="customAlertMessage"></div>
+            <button class="custom-alert-btn" id="customAlertBtn">确定</button>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>

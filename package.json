@@ -1,0 +1,123 @@
+{
+    "name": "wnks_jianying_client",
+    "version": "1.0.0",
+    "description": "无念剪映小助手 - 草稿管理工具",
+    "author": "无念",
+    "main": "main.js",
+    "scripts": {
+        "start": "chcp 65001 >nul && electron .",
+        "start:powershell": "powershell -Command \"$OutputEncoding = [System.Text.Encoding]::UTF8; electron .\"",
+        "build:win": "electron-builder --win --x64 --publish never",
+        "build:mac": "electron-builder --mac --publish never"
+    },
+    "build": {
+        "appId": "com.wnksjianying.app",
+        "productName": "无念剪映小助手",
+        "directories": {
+            "output": "dist"
+        },
+        "publish": null,
+        "compression": "maximum",
+        "asar": true,
+        "asarUnpack": [
+            "node_modules/axios/**/*"
+        ],
+        "nsis": {
+            "oneClick": false,
+            "allowToChangeInstallationDirectory": true
+        },
+        "files": [
+            "main.js",
+            "preload.js",
+            "renderer.js",
+            "index.html",
+            "styles.css",
+            "icon.png",
+            "node_modules/**/*",
+            "!node_modules/**/{CHANGELOG.md,README.md,README,readme.md,readme}",
+            "!node_modules/**/{test,__tests__,tests,powered-test,example,examples}",
+            "!node_modules/**/*.d.ts",
+            "!node_modules/.bin",
+            "!node_modules/**/*.map",
+            "!node_modules/**/*.ts",
+            "!**/*.md",
+            "!docs/**/*",
+            "!.github/**/*",
+            "!.git/**/*",
+            "!.vscode/**/*",
+            "!dist/**/*",
+            "!*.js.map",
+            "!test-build.js",
+            "!MANUAL_RELEASE_GUIDE.md",
+            "!GITHUB_ACTIONS_SETUP.md",
+            "!PROJECT_STRUCTURE.md"
+        ],
+        "win": {
+            "target": [
+                {
+                    "target": "portable",
+                    "arch": [
+                        "x64"
+                    ]
+                }
+            ],
+            "icon": "build/icon.ico",
+            "requestedExecutionLevel": "asInvoker"
+        },
+        "portable": {
+            "artifactName": "WnksJianYingClient-v${version}.exe"
+        },
+        "mac": {
+            "target": [
+                {
+                    "target": "dmg",
+                    "arch": [
+                        "arm64",
+                        "x64"
+                    ]
+                }
+            ],
+            "icon": "build/icon.icns",
+            "category": "public.app-category.productivity",
+            "hardenedRuntime": true,
+            "gatekeeperAssess": false,
+            "entitlements": "build/entitlements.mac.plist",
+            "entitlementsInherit": "build/entitlements.mac.plist"
+        },
+        "dmg": {
+            "artifactName": "WnksJianYingClient-v${version}-mac-${arch}.dmg",
+            "title": "${productName} v${version}",
+            "contents": [
+                {
+                    "x": 130,
+                    "y": 220
+                },
+                {
+                    "x": 410,
+                    "y": 220,
+                    "type": "link",
+                    "path": "/Applications"
+                }
+            ]
+        },
+        "linux": {
+            "target": [
+                {
+                    "target": "AppImage",
+                    "arch": [
+                        "x64"
+                    ]
+                }
+            ],
+            "icon": "build/icon.png",
+            "category": "Utility"
+        }
+    },
+    "devDependencies": {
+        "electron": "^39.2.5",
+        "electron-builder": "^26.0.12"
+    },
+    "dependencies": {
+        "axios": "^1.13.2"
+    }
+}
